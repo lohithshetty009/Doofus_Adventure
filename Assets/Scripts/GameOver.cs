@@ -8,9 +8,7 @@ public class GameOverManager : MonoBehaviour
 {
     public TextMeshProUGUI gameOverText;  // Reference to the Text UI element to display "Game Over"
     public Transform doofus;              // Reference to the Doofus cube
-
     private bool isGameOver = false;
-
     void Update()
     {
         // Check if Doofus falls below a certain height
@@ -19,6 +17,7 @@ public class GameOverManager : MonoBehaviour
             GameOver();
         }
     }
+
 
     // Method to handle the game over state
     void GameOver()
@@ -32,6 +31,7 @@ public class GameOverManager : MonoBehaviour
     IEnumerator RestartGameAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);  // Wait for the specified delay
+        ScoreManager.ResetScore(); // Reset the score before restarting
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Reload the current scene
     }
 }

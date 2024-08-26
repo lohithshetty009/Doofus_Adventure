@@ -9,7 +9,6 @@ public class IsVisible : MonoBehaviour
     public float MinTime = 2.0f;    // Minimum time before pulpit disappears
     public float MaxTime = 5.0f;    // Maximum time before pulpit disappears
     public TextMeshProUGUI timerText;  // Reference to the Text UI element to display the timer
-
     private float remainingTime;    // Time left before the pulpit disappears
 
     void Start()
@@ -63,10 +62,10 @@ public class IsVisible : MonoBehaviour
         // Possible directions: right, left, forward, backward
         Vector3[] directions = new Vector3[]
         {
-            new Vector3(9, 0, 0),    // Right
-            new Vector3(-9, 0, 0),   // Left
-            new Vector3(0, 0, 9),    // Forward
-            new Vector3(0, 0, -9)    // Backward
+            new Vector3(7, 0, 0),    // Right
+            new Vector3(-7, 0, 0),   // Left
+            new Vector3(0, 0, 7),    // Forward
+            new Vector3(0, 0, -7)    // Backward
         };
 
         // Select a random direction

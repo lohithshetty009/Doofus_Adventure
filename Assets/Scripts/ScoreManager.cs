@@ -4,7 +4,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;  // Reference to the Text UI element to display the score
-    private int score = 0;             // Score to track Pulpits visited
+    private static int score = 0;      // Static Score to track Pulpits visited
 
     void Start()
     {
@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the object Doofus collided with is a Player
+        // Check if the object Doofus collided with has a tag "Pulpit"
         if (collision.gameObject.CompareTag("Player"))
         {
             score++; // Increment the score
@@ -28,5 +28,11 @@ public class ScoreManager : MonoBehaviour
         {
             scoreText.text = "Score: " + score.ToString();
         }
+    }
+
+    // Method to reset the score
+    public static void ResetScore()
+    {
+        score = 0;
     }
 }
