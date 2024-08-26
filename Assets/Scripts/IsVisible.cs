@@ -9,18 +9,13 @@ public class IsVisible : MonoBehaviour
     public float MinTime = 2.0f;    // Minimum time before pulpit disappears
     public float MaxTime = 5.0f;    // Maximum time before pulpit disappears
     public TextMeshProUGUI timerText;  // Reference to the Text UI element to display the timer
-    public TextMeshProUGUI scoreText;  // Reference to the Text UI element to display the score
 
     private float remainingTime;    // Time left before the pulpit disappears
-    private static int score = 0;   // Static score to track Pulpits visited
 
     void Start()
     {
         // Start the coroutine to handle pulpit visibility and spawning
         StartCoroutine(ToggleVisibilityAndSpawnCo());
-
-        // Update the score display
-        UpdateScore();
     }
 
     IEnumerator ToggleVisibilityAndSpawnCo()
@@ -60,10 +55,6 @@ public class IsVisible : MonoBehaviour
 
         // Instantiate a new pulpit at the new position
         Instantiate(PulpitPrefab, newPosition, Quaternion.identity);
-
-        // Increment the score each time a new pulpit is spawned
-        score++;
-        UpdateScore();
     }
 
     // Method to calculate a random adjacent position
@@ -81,14 +72,5 @@ public class IsVisible : MonoBehaviour
         // Select a random direction
         int randomIndex = Random.Range(0, directions.Length);
         return directions[randomIndex];
-    }
-
-    // Method to update the score text on the UI
-    void UpdateScore()
-    {
-        if (scoreText != null)
-        {
-            scoreText.text = "Score: " + score.ToString();
-        }
     }
 }

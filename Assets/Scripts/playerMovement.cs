@@ -5,24 +5,32 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] float speed = 3f;//given default value of speed as 3f
-    // Start called at start of program(one time)
-    //[SerializeField] Transform groundcheck;
-    //[SerializeField] LayerMask ground;
+    [SerializeField] float speed = 3f; // Given default value of speed as 3f
+    [SerializeField] float extraGravity = 10f; // Additional gravity force
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // Lock all rotations
+        rb.freezeRotation = true;
     }
 
-    // Update called one time for every frame
-    void Update()
+    void FixedUpdate()
     {
-        //Use GetAxis function
-        float horizortialNo = Input.GetAxis("Horizontal");
-        float verticalNo = Input.GetAxis("Vertical");
-        rb.velocity = new Vector3(horizortialNo * speed, rb.velocity.y, verticalNo * speed);
-        
+        // Get movement inputs
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
+        // Calculate movement vector
+        Vector3 movement = new Vector3(horizontalInput, 0, verticalInput) * speed;
+
+        // Apply movement to the Rigidbody
+        rb.velocity = movement;
+
+        // Apply additional gravity force
+        rb.AddForce(Vector3.down * extraGravity, ForceMode.Acceleration);
+
+        // Ensure no rotation
+        rb.angularVelocity = Vector3.zero;
     }
-    
 }
